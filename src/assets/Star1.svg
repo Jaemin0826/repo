@@ -1,0 +1,28 @@
+<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_ng_6310_8404)">
+<path d="M13.8558 0.883515C13.9906 0.519305 14.5057 0.519304 14.6405 0.883514L17.3222 8.13072C17.7459 9.27578 18.6487 10.1786 19.7938 10.6023L27.041 13.284C27.4052 13.4188 27.4052 13.9339 27.041 14.0687L19.7938 16.7504C18.6487 17.1741 17.7459 18.0769 17.3222 19.222L14.6405 26.4692C14.5057 26.8334 13.9906 26.8334 13.8558 26.4692L11.1741 19.222C10.7504 18.0769 9.84756 17.1741 8.7025 16.7504L1.45529 14.0687C1.09108 13.9339 1.09108 13.4188 1.45529 13.284L8.7025 10.6023C9.84756 10.1786 10.7504 9.27578 11.1741 8.13072L13.8558 0.883515Z" fill="white" fill-opacity="0.8"/>
+</g>
+<defs>
+<filter id="filter0_ng_6310_8404" x="0.763794" y="0.192017" width="26.9685" height="26.9685" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feTurbulence type="fractalNoise" baseFrequency="4.7808599472045898 4.7808599472045898" stitchTiles="stitch" numOctaves="3" result="noise" seed="9067" />
+<feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise" />
+<feComponentTransfer in="alphaNoise" result="coloredNoise1">
+<feFuncA type="discrete" tableValues="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "/>
+</feComponentTransfer>
+<feComposite operator="in" in2="shape" in="coloredNoise1" result="noise1Clipped" />
+<feFlood flood-color="#4081F9" result="color1Flood" />
+<feComposite operator="in" in2="noise1Clipped" in="color1Flood" result="color1" />
+<feMerge result="effect1_noise_6310_8404">
+<feMergeNode in="shape" />
+<feMergeNode in="color1" />
+</feMerge>
+<feTurbulence type="fractalNoise" baseFrequency="2.3904299736022949 2.3904299736022949" numOctaves="3" seed="1637" />
+<feDisplacementMap in="effect1_noise_6310_8404" scale="0.83666956424713135" xChannelSelector="R" yChannelSelector="G" result="displacedImage" width="100%" height="100%" />
+<feMerge result="effect2_texture_6310_8404">
+<feMergeNode in="displacedImage"/>
+</feMerge>
+</filter>
+</defs>
+</svg>
