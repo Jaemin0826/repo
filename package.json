@@ -11,7 +11,7 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
-  "homepage": "https://<GITHUB_USERNAME>.github.io/<REPO_NAME>",
+  "homepage": "https://jaemin0826.github.io/repo",
   "dependencies": {
     "firebase": "^12.4.0",
     "react": "^19.1.1",
