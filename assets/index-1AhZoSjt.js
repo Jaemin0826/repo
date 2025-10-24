@@ -3247,8 +3247,8 @@ ${this.customData.serverResponse}`:this.message=this._baseMessage}}var Pi;(funct
   width: 100%;
   gap: 5px;
 `;Ct.div`
-  width: 36px;
-  height: 36px;
+  width: 48px;
+  height: 48px;
   background: #222;
 `;const n6=Ct.img`
   width: ${({$ranking:r})=>r===1?"60px":r===2?"40px":"36px"};
