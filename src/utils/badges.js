@@ -17,8 +17,9 @@ export function computeBadgeSummary(user = undefined) {
 }
 
 export function getBadgeSrc(key, level) {
-  if (key === "distance") return `/Badge/Badge_Length_${level}.svg`;
-  if (key === "area") return `/Badge/Badge_Width_${level}.svg`;
-  if (key === "gyro") return `/Badge/Badge_Gyro_${level}.svg`;
+  const base = (import.meta && import.meta.env && import.meta.env.BASE_URL) ? import.meta.env.BASE_URL : '/';
+  if (key === "distance") return `${base}Badge/Badge_Length_${level}.svg`;
+  if (key === "area") return `${base}Badge/Badge_Width_${level}.svg`;
+  if (key === "gyro") return `${base}Badge/Badge_Gyro_${level}.svg`;
   return "";
 }
