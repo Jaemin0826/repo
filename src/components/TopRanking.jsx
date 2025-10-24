@@ -120,13 +120,12 @@ function TopRanking({ userFields }) {
     <TopRankingWrap>
       <HeaderWrap>
         <HeaderBox>
-          <img src={Crown} />
-          <p>오늘의 TOP3</p>
-          <img src={Crown} />
+          <img
+            src={`${import.meta.env.BASE_URL}Top10.svg`}
+            alt="오늘의 TOP3"
+            style={{ height: 52, width: "auto" }}
+          />
         </HeaderBox>
-        <Description>
-          Top 3의 참여자에게는 즐거움을 선물로 증정합니다!
-        </Description>
       </HeaderWrap>
       <RankingWrap>
         {top3Ordered.map((user, idx) => (

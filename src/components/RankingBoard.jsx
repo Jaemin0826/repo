@@ -46,6 +46,12 @@ const RankingTitle = styled.div`
     letter-spacing: -1.28px;
   }
 
+  /* 타이틀 SVG 이미지 사이즈 */
+  & > img.title {
+    display: block;
+    height: 64px;
+  }
+
   & > img:nth-child(1) {
     position: absolute;
     top: -16px;
@@ -117,7 +123,11 @@ function RankingBoard() {
           <img src={Star1} />
           <img src={Star2} />
           <img src={Star3} />
-          <p>Ranking</p>
+          <img
+            src={`${import.meta.env.BASE_URL}Ranking.svg`}
+            alt="Ranking"
+            className="title"
+          />
         </RankingTitle>
         <TitleLogo>
           <img src={CoakLogo} alt="Ranking Logo" />

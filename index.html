@@ -4,38 +4,12 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Improve webfont loading on mobile -->
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
-    <!-- Preload fonts used in index.css @font-face -->
-    <link
-      rel="preload"
-      as="font"
-      type="font/woff"
-      href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/JalnanGothic.woff"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/Paperlogy-4Regular.woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/Paperlogy-5Medium.woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      as="font"
-      type="font/woff2"
-      href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/Paperlogy-7Bold.woff2"
-      crossorigin
-    />
+    <!-- Prefer preloading self-hosted fonts; CSS will fall back to CDN if not present -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/JalnanGothic.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff" href="/fonts/JalnanGothic.woff" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/Paperlogy-4Regular.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/Paperlogy-5Medium.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/Paperlogy-7Bold.woff2" crossorigin />
     <title>rankingboard</title>
   </head>
   <body>
