@@ -199,7 +199,7 @@ const StyledImg = styled.img`
 `;
 
 function TopCard({ ranking, user }) {
-  const badgeSummary = useMemo(() => computeBadgeSummary(user), [user]);
+  const badgeSummary = useMemo(() => computeBadgeSummary(user ?? {}), [user]);
   const rankImg =
     ranking === 1
       ? Rank1

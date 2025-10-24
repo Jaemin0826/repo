@@ -1,8 +1,9 @@
 // Utilities for computing badge levels and image paths
-export function computeBadgeSummary(user = {}) {
-  const distanceKm = Number(user.distanceKm) || 0;
-  const areaKm2 = Number(user.areaKm2) || 0;
-  const gyroCombined = Number(user.gyroCombined) || 0;
+export function computeBadgeSummary(user = undefined) {
+  const u = user ?? {};
+  const distanceKm = Number(u.distanceKm) || 0;
+  const areaKm2 = Number(u.areaKm2) || 0;
+  const gyroCombined = Number(u.gyroCombined) || 0;
 
   const distLevel = distanceKm >= 4 ? 3 : distanceKm >= 2 ? 2 : 1;
   const areaLevel = areaKm2 >= 0.7 ? 3 : areaKm2 >= 0.2 ? 2 : 1;

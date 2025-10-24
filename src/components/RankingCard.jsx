@@ -142,7 +142,7 @@ const Km = styled.div`
 `;
 
 function RankingCard({ ranking, user, highlight, ...rest }) {
-  const badgeSummary = useMemo(() => computeBadgeSummary(user), [user]);
+  const badgeSummary = useMemo(() => computeBadgeSummary(user ?? {}), [user]);
   const rankImg =
     ranking === 1
       ? Rank1
