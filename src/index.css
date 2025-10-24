@@ -6,8 +6,10 @@
 
 /* Web fonts: Jalnan & Paperlogy loaded from CDN (Noonnu) */
 @font-face {
-  font-family: 'Jalnan';
-  src: local('Jalnan'), url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/JalnanGothic.woff') format('woff');
+  font-family: "Jalnan";
+  src: local("Jalnan"),
+    url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/JalnanGothic.woff")
+      format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -15,24 +17,30 @@
 
 /* Paperlogy Regular (400) */
 @font-face {
-  font-family: 'Paperlogy';
-  src: local('Paperlogy Regular'), url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/Paperlogy-4Regular.woff2') format('woff2');
+  font-family: "Paperlogy";
+  src: local("Paperlogy Regular"),
+    url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/Paperlogy-4Regular.woff2")
+      format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 /* Paperlogy Medium (500) */
 @font-face {
-  font-family: 'Paperlogy';
-  src: local('Paperlogy Medium'), url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/Paperlogy-5Medium.woff2') format('woff2');
+  font-family: "Paperlogy";
+  src: local("Paperlogy Medium"),
+    url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/Paperlogy-5Medium.woff2")
+      format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 /* Paperlogy Bold (700) */
 @font-face {
-  font-family: 'Paperlogy';
-  src: local('Paperlogy Bold'), url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/Paperlogy-7Bold.woff2') format('woff2');
+  font-family: "Paperlogy";
+  src: local("Paperlogy Bold"),
+    url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/Paperlogy-7Bold.woff2")
+      format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -56,4 +64,6 @@ body {
   text-rendering: optimizeLegibility;
 }
 /* Prevent iOS auto text resizing which can distort fonts */
-html { -webkit-text-size-adjust: 100%; }
+html {
+  -webkit-text-size-adjust: 100%;
+}

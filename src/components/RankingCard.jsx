@@ -13,7 +13,8 @@ const RankingCardWrap = styled.div`
   align-items: center;
 
   border-radius: 16px;
-  border: ${({ $highlight }) => ($highlight ? '2px solid #5E66FF' : '2px solid transparent')};
+  border: ${({ $highlight }) =>
+    $highlight ? "2px solid #5E66FF" : "2px solid transparent"};
 
   background: ${({ $ranking }) =>
     $ranking === 1

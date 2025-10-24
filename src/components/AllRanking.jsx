@@ -167,8 +167,11 @@ function AllRanking({ userFields }) {
     <AllRankingwrap>
       <HeaderWrap>
         <TextBox>
-          <p>전체 랭킹</p>
-          <p>랭킹은 러닝 거리를 기준으로 측정됩니다.</p>
+          <img
+            src={`${import.meta.env.BASE_URL}11.svg`}
+            alt="전체 랭킹 안내"
+            style={{ height: 48 }}
+          />
         </TextBox>
         <RefreshBtn onClick={handleRefresh}>
           <img src={Refresh} />
