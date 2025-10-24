@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { useMemo } from "react";
+import { computeBadgeSummary, getBadgeSrc } from "../utils/badges";
 
 import Rank1 from "../assets/Rank1.svg";
 import Rank2 from "../assets/Rank2.svg";
@@ -11,6 +13,7 @@ const RankingCardWrap = styled.div`
   align-items: center;
 
   border-radius: 16px;
+  border: ${({ $highlight }) => ($highlight ? '2px solid #5E66FF' : '2px solid transparent')};
 
   background: ${({ $ranking }) =>
     $ranking === 1
@@ -138,7 +141,8 @@ const Km = styled.div`
   letter-spacing: -0.32px;
 `;
 
-function RankingCard({ ranking, user }) {
+function RankingCard({ ranking, user, highlight, ...rest }) {
+  const badgeSummary = useMemo(() => computeBadgeSummary(user), [user]);
   const rankImg =
     ranking === 1
       ? Rank1
@@ -148,7 +152,7 @@ function RankingCard({ ranking, user }) {
       ? Rank3
       : null;
   return (
-    <RankingCardWrap $ranking={ranking}>
+    <RankingCardWrap $ranking={ranking} $highlight={highlight} {...rest}>
       <RankingInfo $ranking={ranking}>
         {rankImg ? (
           <img
@@ -165,9 +169,14 @@ function RankingCard({ ranking, user }) {
       </NameInfo>
       <BadgeInfo>
         <BadgeWrap>
-          {user && Array.isArray(user.badges)
-            ? user.badges.slice(0, 3).map((b, i) => <Badge key={i} />)
-            : [0, 1, 2].map((i) => <Badge key={i} />)}
+          {badgeSummary.map((b) => (
+            <img
+              key={b.key}
+              src={getBadgeSrc(b.key, b.level)}
+              alt={`${b.category} Lv.${b.level}`}
+              style={{ width: 28, height: 28 }}
+            />
+          ))}
         </BadgeWrap>
       </BadgeInfo>
       <DistanceInfo $ranking={ranking}>

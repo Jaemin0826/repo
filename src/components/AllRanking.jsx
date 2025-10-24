@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useEffect, useMemo } from "react";
 import Refresh from "../assets/Refresh.svg";
 import RankingCard from "./RankingCard.jsx";
 
@@ -121,9 +122,46 @@ function AllRanking({ userFields }) {
     window.location.reload();
   };
   // distanceKm 기준 내림차순 정렬 (string/number 모두 처리)
-  const sorted = [...(userFields || [])]
-    .filter((u) => !isNaN(Number(u.distanceKm)))
-    .sort((a, b) => Number(b.distanceKm) - Number(a.distanceKm));
+  const sorted = useMemo(() => {
+    return [...(userFields || [])]
+      .filter((u) => !isNaN(Number(u.distanceKm)))
+      .sort((a, b) => Number(b.distanceKm) - Number(a.distanceKm));
+  }, [userFields]);
+
+  // 가장 최근 생성된 레코드 id 계산
+  const latestId = useMemo(() => {
+    if (!userFields || userFields.length === 0) return null;
+    const getTimeMs = (v) => {
+      if (!v) return 0;
+      if (typeof v === "number") return v;
+      if (typeof v === "string") {
+        const t = Date.parse(v);
+        return isNaN(t) ? 0 : t;
+      }
+      if (typeof v === "object" && typeof v.seconds === "number") {
+        return v.seconds * 1000 + (v.nanoseconds ? v.nanoseconds / 1e6 : 0);
+      }
+      return 0;
+    };
+    let latest = userFields[0];
+    for (const u of userFields) {
+      if (getTimeMs(u.createdAt) > getTimeMs(latest.createdAt)) latest = u;
+    }
+    return latest?.id || null;
+  }, [userFields]);
+
+  // 로드 후 최신 항목으로 스크롤, 2초 뒤 맨 위로
+  useEffect(() => {
+    if (!latestId) return;
+    const el = document.querySelector(`[data-user-id="${latestId}"]`);
+    if (el && el.scrollIntoView) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      const t = setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 2000);
+      return () => clearTimeout(t);
+    }
+  }, [latestId]);
 
   return (
     <AllRankingwrap>
@@ -146,7 +184,13 @@ function AllRanking({ userFields }) {
         </InfoBox>
         <RankingCardBox>
           {sorted.map((user, idx) => (
-            <RankingCard key={user.id} ranking={idx + 1} user={user} />
+            <RankingCard
+              key={user.id}
+              ranking={idx + 1}
+              user={user}
+              highlight={user.id === latestId}
+              data-user-id={user.id}
+            />
           ))}
         </RankingCardBox>
       </RankingWrap>

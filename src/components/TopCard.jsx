@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { useMemo } from "react";
+import { computeBadgeSummary, getBadgeSrc } from "../utils/badges";
 
 import Rank1 from "../assets/Rank1.svg";
 import Rank2 from "../assets/Rank2.svg";
@@ -197,6 +199,7 @@ const StyledImg = styled.img`
 `;
 
 function TopCard({ ranking, user }) {
+  const badgeSummary = useMemo(() => computeBadgeSummary(user), [user]);
   const rankImg =
     ranking === 1
       ? Rank1
@@ -231,10 +234,14 @@ function TopCard({ ranking, user }) {
         </DistanceBox>
       </InfoBox>
       <BadgeWrap>
-        {/* user.badges가 배열이면 배지 개수만큼 출력, 아니면 3개 빈 배지 */}
-        {user && Array.isArray(user.badges)
-          ? user.badges.slice(0, 3).map((b, i) => <Badge key={i} />)
-          : [0, 1, 2].map((i) => <Badge key={i} />)}
+        {badgeSummary.map((b) => (
+          <img
+            key={b.key}
+            src={getBadgeSrc(b.key, b.level)}
+            alt={`${b.category} Lv.${b.level}`}
+            style={{ width: 32, height: 32 }}
+          />
+        ))}
       </BadgeWrap>
     </TopCardWrap>
   );
