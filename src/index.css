@@ -55,4 +55,9 @@ body {
     "Noto Sans KR", "Malgun Gothic", sans-serif;
   background-color: #ffffff;
   color: #111111;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
+/* Prevent iOS auto text resizing which can distort fonts */
+html { -webkit-text-size-adjust: 100%; }

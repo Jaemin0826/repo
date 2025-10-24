@@ -42,7 +42,7 @@ const RankingTitle = styled.div`
     color: var(--Gray-White, #fff);
     font-family: Jalnan;
     font-size: 64px;
-    font-weight: 700;
+    font-weight: 400; /* Jalnan 제공 가중치에 맞춰 faux-bold 방지 */
     letter-spacing: -1.28px;
   }
 
