@@ -117,7 +117,7 @@ const RankingCardBox = styled.div`
   gap: 20px;
 `;
 
-function AllRanking({ userFields }) {
+function AllRanking({ userFields, autoScrollLatest = true }) {
   const handleRefresh = () => {
     window.location.reload();
   };
@@ -152,12 +152,13 @@ function AllRanking({ userFields }) {
 
   // 로드 후 최신 항목으로 한 번만 스크롤 (사용자 스크롤 방해 금지)
   useEffect(() => {
+    if (!autoScrollLatest) return;
     if (!latestId) return;
     const el = document.querySelector(`[data-user-id="${latestId}"]`);
     if (el && el.scrollIntoView) {
       el.scrollIntoView({ behavior: "smooth", block: "center" });
     }
-  }, [latestId]);
+  }, [latestId, autoScrollLatest]);
 
   return (
     <AllRankingwrap>

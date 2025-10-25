@@ -95,7 +95,11 @@ const TitleLogo = styled.div`
 `;
 
 function RankingBoard() {
+  // 전체 Top 영역에서 사용할 병합 데이터
   const [userFields, setUserFields] = useState([]);
+  // 섹션별 개별 컬렉션 데이터
+  const [userFields1, setUserFields1] = useState([]);
+  const [userFields2, setUserFields2] = useState([]);
   useEffect(() => {
     // 파이어베이스 연결 확인
     console.log("Firebase App Name:", app.name);
@@ -116,8 +120,11 @@ function RankingBoard() {
             ...doc.data(),
           }));
 
-        const data1 = mapDocs(snap1, "userFields");
-        const data2 = mapDocs(snap2, "userField2");
+  const data1 = mapDocs(snap1, "userFields");
+  const data2 = mapDocs(snap2, "userField2");
+  // 섹션별 원본 데이터 저장 (각각 한 번씩만 렌더링용)
+  setUserFields1(data1);
+  setUserFields2(data2);
         const merged = [...data1, ...data2];
 
         // 중복 제거: uid/userId가 있으면 그 값을 키로, 없으면 내용 기반 시그니처 생성
@@ -154,7 +161,8 @@ function RankingBoard() {
           deduped.push(item);
         }
 
-        setUserFields(deduped);
+  // Top 랭킹 계산용으로만 병합 데이터 보관
+  setUserFields(deduped);
         console.log(
           `병합된 데이터: userFields(${data1.length}) + userField2(${data2.length}) = ${merged.length}, 중복 제거 후 ${deduped.length}`,
           { merged, deduped }
@@ -183,7 +191,10 @@ function RankingBoard() {
         </TitleLogo>
       </TitleBox>
       <TopRanking userFields={userFields} />
-      <AllRanking userFields={userFields} />
+      {/* userFields 컬렉션 섹션 */}
+      <AllRanking userFields={userFields1} autoScrollLatest={true} />
+      {/* userField2 컬렉션 섹션 */}
+      <AllRanking userFields={userFields2} autoScrollLatest={false} />
     </RankingBoardWrap>
   );
 }
