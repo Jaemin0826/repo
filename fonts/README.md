@@ -3,6 +3,7 @@ Self-hosted webfonts
 Place your font files here and commit them.
 
 Expected filenames (recommended):
+
 - JalnanGothic.woff2 (optional), JalnanGothic.woff
 - Paperlogy-4Regular.woff2
 - Paperlogy-5Medium.woff2
