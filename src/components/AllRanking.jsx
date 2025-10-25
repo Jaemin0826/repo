@@ -150,16 +150,12 @@ function AllRanking({ userFields }) {
     return latest?.id || null;
   }, [userFields]);
 
-  // 로드 후 최신 항목으로 스크롤, 2초 뒤 맨 위로
+  // 로드 후 최신 항목으로 한 번만 스크롤 (사용자 스크롤 방해 금지)
   useEffect(() => {
     if (!latestId) return;
     const el = document.querySelector(`[data-user-id="${latestId}"]`);
     if (el && el.scrollIntoView) {
       el.scrollIntoView({ behavior: "smooth", block: "center" });
-      const t = setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }, 2000);
-      return () => clearTimeout(t);
     }
   }, [latestId]);
 

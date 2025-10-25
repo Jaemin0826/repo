@@ -15,8 +15,8 @@ const RankingBoardWrap = styled.div`
   height: 100%;
   min-height: 100vh;
   background: linear-gradient(180deg, #696eff 0%, #c9cbff 100%), #fff;
-
-  overflow-y: hidden;
+  /* 스크롤 가능하도록 auto로 변경 */
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
