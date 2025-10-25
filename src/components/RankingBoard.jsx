@@ -100,21 +100,36 @@ function RankingBoard() {
     // 파이어베이스 연결 확인
     console.log("Firebase App Name:", app.name);
 
-    // userFields 컬렉션 데이터 가져오기
-    const fetchUserFields = async () => {
+    // userFields + userField2 컬렉션 데이터 병합 가져오기
+    const fetchAllUserFields = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "userFields"));
-        const data = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setUserFields(data);
-        console.log("userFields 컬렉션 데이터:", data);
+        const [snap1, snap2] = await Promise.all([
+          getDocs(collection(db, "userFields")),
+          getDocs(collection(db, "userField2")), // 새 컬렉션
+        ]);
+
+        const mapDocs = (snap, source) =>
+          snap.docs.map((doc) => ({
+            id: `${source}:${doc.id}`, // 컬렉션 프리픽스로 전역 고유 id 보장
+            _id: doc.id, // 원본 문서 id (디버깅/추후 용도)
+            _source: source,
+            ...doc.data(),
+          }));
+
+        const data1 = mapDocs(snap1, "userFields");
+        const data2 = mapDocs(snap2, "userField2");
+        const merged = [...data1, ...data2];
+
+        setUserFields(merged);
+        console.log(
+          `병합된 데이터: userFields(${data1.length}) + userField2(${data2.length}) = ${merged.length}`,
+          merged
+        );
       } catch (error) {
         console.error("userFields 데이터 불러오기 오류:", error);
       }
     };
-    fetchUserFields();
+    fetchAllUserFields();
   }, []);
   return (
     <RankingBoardWrap>
