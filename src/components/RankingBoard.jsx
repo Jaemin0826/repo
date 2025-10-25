@@ -120,10 +120,44 @@ function RankingBoard() {
         const data2 = mapDocs(snap2, "userField2");
         const merged = [...data1, ...data2];
 
-        setUserFields(merged);
+        // 중복 제거: uid/userId가 있으면 그 값을 키로, 없으면 내용 기반 시그니처 생성
+        const getTimeMs = (v) => {
+          if (!v) return 0;
+          if (typeof v === "number") return v;
+          if (typeof v === "string") {
+            const t = Date.parse(v);
+            return isNaN(t) ? 0 : t;
+          }
+          if (typeof v === "object" && typeof v.seconds === "number") {
+            return v.seconds * 1000 + (v.nanoseconds ? v.nanoseconds / 1e6 : 0);
+          }
+          return 0;
+        };
+
+        const createKey = (u) => {
+          const uid = u.uid || u.userId || u.user_id || null;
+          if (uid) return `uid:${uid}|t:${getTimeMs(u.createdAt)}`;
+          const name = (u.name || u.nickname || "").trim();
+          const dist = Number(u.distanceKm) || 0;
+          const area = Number(u.areaKm2) || 0;
+          const gyro = Number(u.gyroCombined) || 0;
+          const t = getTimeMs(u.createdAt);
+          return `sig:${name}|d:${dist}|a:${area}|g:${gyro}|t:${t}`;
+        };
+
+        const seen = new Set();
+        const deduped = [];
+        for (const item of merged) {
+          const key = createKey(item);
+          if (seen.has(key)) continue;
+          seen.add(key);
+          deduped.push(item);
+        }
+
+        setUserFields(deduped);
         console.log(
-          `병합된 데이터: userFields(${data1.length}) + userField2(${data2.length}) = ${merged.length}`,
-          merged
+          `병합된 데이터: userFields(${data1.length}) + userField2(${data2.length}) = ${merged.length}, 중복 제거 후 ${deduped.length}`,
+          { merged, deduped }
         );
       } catch (error) {
         console.error("userFields 데이터 불러오기 오류:", error);
